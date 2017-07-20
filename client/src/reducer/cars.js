@@ -1,22 +1,9 @@
-export default (state = {
-  "ABC300984": {
-    mileage: 27880,
-    make: "Toyota",
-    model: "Corolla",
-  },
-  "DEF998877": {
-    mileage: 0,
-    make: "Ford",
-    model: "Focus",
-  },
-  "XYZ668872": {
-    mileage: 1000,
-    make: "Toyota",
-    model: "Camry",
-  },
-}, action) => {
+export default (state = {}, action) => {
   const newState = {...state};
   switch (action.type) {
+    case "FETCH_CARS": {
+      return action.payload
+    }
     case "ADD_CAR": {
       newState[action.payload.vin] = action.payload.information;
       return newState;

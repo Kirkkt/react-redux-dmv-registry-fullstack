@@ -1,10 +1,14 @@
 import express from "express"
 
-import helloHandler from "./handlers/helloHandler"
 import getPeopleHandler from "./handlers/getPeopleHandler"
 import addPersonHandler from "./handlers/addPersonHandler"
 import updatePersonHandler from "./handlers/updatePersonHandler"
 import deletePersonHandler from "./handlers/deletePersonHandler"
+
+import getCarsHandler from "./handlers/getCarsHandler"
+import addCarHandler from "./handlers/addCarHandler"
+import updateCarHandler from "./handlers/updateCarHandler"
+import deleteCarHandler from "./handlers/deleteCarHandler"
 
 const app = express()
 
@@ -12,11 +16,15 @@ app.get('/', function(req, res){
   res.send('Hello World');
 });
 
-app.post('/hello', helloHandler)
 app.post('/getPeople', getPeopleHandler)
 app.post('/addPerson', addPersonHandler)
 app.post('/updatePerson', updatePersonHandler)
 app.post('/deletePerson', deletePersonHandler)
+
+app.post('/getCars', getCarsHandler)
+app.post('/addCar', addCarHandler)
+app.post('/updateCar', updateCarHandler)
+app.post('/deleteCar', deleteCarHandler)
 
 /* istanbul ignore next */
 if (!module.parent) {

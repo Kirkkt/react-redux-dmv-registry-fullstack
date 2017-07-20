@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from "react-redux"
 import randomToken from "random-token"
 
-import { addCar, updateCar, deleteCar } from "../../actions/carsActions"
+import { fetchCars, addCar, updateCar, deleteCar } from "../../actions/carsActions"
 import { deleteCarFromRegistry } from "../../actions/registryActions"
 import Property from "./Property"
 import './list.css';
@@ -15,6 +15,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchCars,
     addCar,
     updateCar,
     deleteCar,
@@ -23,6 +24,11 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class Cars extends Component {
+
+  componentDidMount() {
+    this.props.fetchCars()
+  }
+
   updateProperty = (vin, newProperty) => {
     this.props.updateCar({
       vin,

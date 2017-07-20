@@ -15,6 +15,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchPeople,
     addPerson,
     updatePerson,
     deletePerson,
@@ -25,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
 class People extends Component {
 
   componentDidMount() {
-    fetchPeople()
+    this.props.fetchPeople()
   }
 
   updateName = (id, newProperty) => {
