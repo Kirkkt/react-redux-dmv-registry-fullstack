@@ -1,0 +1,10 @@
+{
+  "name": "react-redux-dmv-registry-fullstack-server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "Kirk Ke Tang",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
