@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux"
 
-import { addRegistry, deleteRegistry } from "../../actions/registryActions"
+import { fetchRegistry, addRegistry, deleteRegistry } from "../../actions/registryActions"
+import { fetchPeople } from "../../actions/peopleActions"
+import { fetchCars } from "../../actions/carsActions"
 import './list.css';
 
 const mapStateToProps = (state) => {
@@ -14,12 +16,21 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchRegistry,
+    fetchPeople,
+    fetchCars,
     addRegistry,
     deleteRegistry,
   }
 }
 
 class Registry extends Component {
+
+  componentDidMount() {
+    this.props.fetchRegistry()
+    this.props.fetchPeople()
+    this.props.fetchCars()
+  }
 
   state = {
     isAdding: false,
@@ -36,6 +47,11 @@ class Registry extends Component {
   }
 
   getRegistryList() {
+    if (Object.keys(this.props.people).length === 0 ||
+      Object.keys(this.props.cars).length === 0 ||
+      this.props.registry.length === 0) {
+      return [];
+    }
     let result = []
     for (const id in this.props.registry) {
       const person = this.props.people[id];
@@ -58,10 +74,10 @@ class Registry extends Component {
     if (!this.state.id || !this.state.vin) {
       return;
     }
-    try {
+    if (this.props.registry[this.state.id] && this.props.registry[this.state.id].indexOf(this.state.vin) !== -1) {
+      alert("id - vin pair already existed")
+    } else {
       this.props.addRegistry({id: this.state.id, vin: this.state.vin})
-    } catch (e) {
-      alert(e.message)
     }
     this.reset()
   }

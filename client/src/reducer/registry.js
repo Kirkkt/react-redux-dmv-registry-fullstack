@@ -1,14 +1,9 @@
-export default (state = {
-  "122100AABB": [
-    "ABC300984"
-  ],
-  "334455DDFF": [
-    "DEF998877",
-    "XYZ668872",
-  ],
-}, action) => {
+export default (state = {}, action) => {
   const newState = {...state};
   switch (action.type) {
+    case "FETCH_REGISTRY": {
+      return action.payload
+    }
     case "ADD_REGISTRY": {
       const {id, vin} = action.payload;
       if (
