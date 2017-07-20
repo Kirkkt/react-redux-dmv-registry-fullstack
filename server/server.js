@@ -13,8 +13,8 @@ import deleteCarHandler from "./handlers/deleteCarHandler"
 import getRegistryHandler from "./handlers/getRegistryHandler"
 import addRegistryHandler from "./handlers/addRegistryHandler"
 import deleteRegistryHandler from "./handlers/deleteRegistryHandler"
-// import deletePersonFromRegistryHandler from "./handlers/deletePersonFromRegistryHandler"
-// import deleteCarFromRegistryHandler from "./handlers/deleteCarFromRegistryHandler"
+import deletePersonFromRegistryHandler from "./handlers/deletePersonFromRegistryHandler"
+import deleteCarFromRegistryHandler from "./handlers/deleteCarFromRegistryHandler"
 
 const app = express()
 
@@ -35,8 +35,8 @@ app.post('/deleteCar', deleteCarHandler)
 app.post('/getRegistry', getRegistryHandler)
 app.post('/addRegistry', addRegistryHandler)
 app.post('/deleteRegistry', deleteRegistryHandler)
-// app.post('/deletePersonFromRegistry', deletePersonFromRegistryHandler)
-// app.post('/deleteCarFromRegistry', deleteCarFromRegistryHandler)
+app.post('/deletePersonFromRegistry', deletePersonFromRegistryHandler)
+app.post('/deleteCarFromRegistry', deleteCarFromRegistryHandler)
 
 /* istanbul ignore next */
 if (!module.parent) {

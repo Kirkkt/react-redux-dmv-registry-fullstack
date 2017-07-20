@@ -134,6 +134,8 @@ const Database = {
 
 // Database.allDocsInCollectionToString('users', console.log);
 
+// Database.resetCollectionPromise("registry")
+
 Database.initialize()
 
 export default Database
