@@ -7,19 +7,40 @@ const fetchPeople = () => {
     })
     .then(response => response.json())
     .then(responseJson => {
-      console.log("responseJson", responseJson)
+      if (responseJson.success) {
+        dispatch({
+          type: "FETCH_PEOPLE",
+          payload: responseJson.people,
+        })
+      }
+      console.log(responseJson.people)
     })
     .catch(({message}) => console.log(message))
   })
 }
 
 const addPerson = ({id, information}) => {
-  store.dispatch({
-    type: "ADD_PEOPLE",
-    payload: {
-      id,
-      information,
-    }
+  store.dispatch(dispatch => {
+    fetch("http://localhost:2379/addPerson", {
+      method: 'POST',
+      body: "id=" + id +
+        "&firstName=" + information.firstName +
+        "&lastName=" + information.lastName
+    })
+    .then(response => response.json())
+    .then(responseJson => {
+      console.log("responseJson", responseJson)
+      if (responseJson.success) {
+        dispatch({
+          type: "ADD_PEOPLE",
+          payload: {
+            id,
+            information,
+          }
+        })
+      }
+    })
+    .catch(({message}) => console.log(message))
   })
 }
 

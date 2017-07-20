@@ -1,6 +1,15 @@
 import handlerFactory from "./handlerFactory"
 import Database from "../common/Database"
 
+const toPeopleObject = docs => {
+  const result = {}
+  docs.forEach(doc => result[doc.id] = {
+    firstName: doc.firstName,
+    lastName: doc.lastName,
+  })
+  return result
+}
+
 const handle = (requestData, callback) => {
   let dbToClose
   Database.getMongoClientPromise()
@@ -11,8 +20,8 @@ const handle = (requestData, callback) => {
     .then(docs => {
       dbToClose.close();
       callback({
-        people: docs,
-        success: true
+        people: toPeopleObject(docs),
+        success: true,
       })
     })
     .catch(err => callback({
