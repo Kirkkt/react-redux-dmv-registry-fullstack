@@ -5,4 +5,4 @@ const handleHello = (requestData, callback) => {
   callback({hello: "world"})
 }
 
-export default handlerFactory(handleHello, "/hello", "a")
+export default handlerFactory(handleHello, "/hello", ["a"])

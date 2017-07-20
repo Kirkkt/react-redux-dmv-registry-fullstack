@@ -15,6 +15,7 @@
   },
   "scripts": {
     "start": "babel-node server.js",
-    "mongo": "mongod --dbpath mongodb"
+    "mongo": "mongod --dbpath mongodb",
+    "mongo:reset": "babel-node common/DatabaseReset.js"
   }
 }

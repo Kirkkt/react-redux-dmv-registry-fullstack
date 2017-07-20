@@ -2,9 +2,8 @@ import store from "../store"
 
 const fetchPeople = () => {
   store.dispatch(dispatch => {
-    fetch("http://localhost:2379/hello", {
+    fetch("http://localhost:2379/getPeople", {
       method: 'POST',
-      body: "a=123"
     })
     .then(response => response.json())
     .then(responseJson => {
