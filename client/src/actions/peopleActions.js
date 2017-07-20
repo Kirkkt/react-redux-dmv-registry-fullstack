@@ -45,12 +45,27 @@ const addPerson = ({id, information}) => {
 }
 
 const updatePerson = ({id, information}) => {
-  store.dispatch({
-    type: "UPDATE_PEOPLE",
-    payload: {
-      id,
-      information
-    }
+  store.dispatch(dispatch => {
+    fetch("http://localhost:2379/updatePerson", {
+      method: 'POST',
+      body: "id=" + id +
+        "&firstName=" + information.firstName +
+        "&lastName=" + information.lastName
+    })
+    .then(response => response.json())
+    .then(responseJson => {
+      console.log("responseJson", responseJson)
+      if (responseJson.success) {
+        dispatch({
+          type: "UPDATE_PEOPLE",
+          payload: {
+            id,
+            information,
+          }
+        })
+      }
+    })
+    .catch(({message}) => console.log(message))
   })
 }
 
