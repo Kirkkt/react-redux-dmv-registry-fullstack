@@ -70,9 +70,22 @@ const updatePerson = ({id, information}) => {
 }
 
 const deletePerson = ({id}) => {
-  store.dispatch({
-    type: "DELETE_PERSON",
-    payload: id,
+  store.dispatch(dispatch => {
+    fetch("http://localhost:2379/deletePerson", {
+      method: 'POST',
+      body: "id=" + id
+    })
+    .then(response => response.json())
+    .then(responseJson => {
+      console.log("responseJson", responseJson)
+      if (responseJson.success) {
+        dispatch({
+          type: "DELETE_PERSON",
+          payload: id,
+        })
+      }
+    })
+    .catch(({message}) => console.log(message))
   })
 }
 
