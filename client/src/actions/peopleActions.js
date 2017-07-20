@@ -32,7 +32,7 @@ const addPerson = ({id, information}) => {
       console.log("responseJson", responseJson)
       if (responseJson.success) {
         dispatch({
-          type: "ADD_PEOPLE",
+          type: "ADD_PERSON",
           payload: {
             id,
             information,
@@ -57,7 +57,7 @@ const updatePerson = ({id, information}) => {
       console.log("responseJson", responseJson)
       if (responseJson.success) {
         dispatch({
-          type: "UPDATE_PEOPLE",
+          type: "UPDATE_PERSON",
           payload: {
             id,
             information,
@@ -71,7 +71,7 @@ const updatePerson = ({id, information}) => {
 
 const deletePerson = ({id}) => {
   store.dispatch({
-    type: "DELETE_PEOPLE",
+    type: "DELETE_PERSON",
     payload: id,
   })
 }

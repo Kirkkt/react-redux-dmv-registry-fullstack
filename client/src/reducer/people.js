@@ -4,18 +4,18 @@ export default (state = {}, action) => {
     case "FETCH_PEOPLE": {
       return action.payload
     }
-    case "ADD_PEOPLE": {
+    case "ADD_PERSON": {
       newState[action.payload.id] = action.payload.information
       return newState
     }
-    case "UPDATE_PEOPLE": {
+    case "UPDATE_PERSON": {
       if (!(action.payload.id in newState)) {
         throw new Error("id not found: " + action.payload.id)
       }
       newState[action.payload.id] = action.payload.information
       return newState
     }
-    case "DELETE_PEOPLE": {
+    case "DELETE_PERSON": {
       if (!(action.payload in newState)) {
         throw new Error("id not found: " + action.payload)
       }
