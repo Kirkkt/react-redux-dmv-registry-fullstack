@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from "react-redux"
 import randomToken from "random-token"
 
-import { addPerson, updatePerson, deletePerson } from "../../actions/peopleActions"
+import { fetchPeople, addPerson, updatePerson, deletePerson } from "../../actions/peopleActions"
 import { deletePersonFromRegistry } from "../../actions/registryActions"
 import Property from "./Property"
 import './list.css';
@@ -23,6 +23,10 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class People extends Component {
+
+  componentDidMount() {
+    fetchPeople()
+  }
 
   updateName = (id, newProperty) => {
     this.props.updatePerson({

@@ -1,5 +1,19 @@
 import store from "../store"
 
+const fetchPeople = () => {
+  store.dispatch(dispatch => {
+    fetch("http://localhost:2379/hello", {
+      method: 'POST',
+      body: "a=123"
+    })
+    .then(response => response.json())
+    .then(responseJson => {
+      console.log("responseJson", responseJson)
+    })
+    .catch(({message}) => console.log(message))
+  })
+}
+
 const addPerson = ({id, information}) => {
   store.dispatch({
     type: "ADD_PEOPLE",
@@ -28,6 +42,7 @@ const deletePerson = ({id}) => {
 }
 
 export {
+  fetchPeople,
   addPerson,
   updatePerson,
   deletePerson,
